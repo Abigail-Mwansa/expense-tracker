@@ -126,7 +126,9 @@ int main(){
         cout<<"1. Add Expense"<<endl;
         cout<<"2. View Expense"<<endl;
         cout<<"3.Calculate Total"<<endl;
-     
+        cout<<"4. Edit Expense"<<endl;
+        cout<<"5. Delete Expense"<<endl;
+        cout<<"6. Exit<<endl";
         cout<<"Enter Your Choice: "<<endl;
         cin>>choice;
 
@@ -134,16 +136,20 @@ int main(){
             case 1: addExpense(expenses);
             break;
             case 2: viewExpenses(expenses);
-            break;
+            break;   
             case 3: calculateTotal(expenses);
             break;
-            case 4: cout<<"Exiting Expense Tracker..."<<endl;
+            case 4: editExpense(expenses);
+            break;
+            case 5: deleteExpense(expenses);
+            break;
+            case 6: cout<<"Exiting Expense Tracker..."<<endl;
             break;
             default:cout<<"Invalid choice!"<<endl; 
             
 
         }
-     }while(choice !=4);
+     }while(choice !=6);
     
     return 0;
 }
