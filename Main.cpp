@@ -56,6 +56,66 @@ void calculateTotal(vector<Expense>&expenses){
     }
     cout<<"Total expenses: K"<<total<<endl;
 }
+
+//Functions to edit an expense
+void editExpense(vector<Expense>&expenses){
+    int searchID;
+    int found = 0;
+    cout<<"Enter the ID of the expense to edit: ";
+    cin>> searchID;
+
+    for(int i = 0;i<=expenses.size(); i++){
+        if(expenses[i].id == searchID){
+            cout<<"Enter new description: ";
+            cin.ignore();
+            getline(cin,expenses[i].description);
+            cout<<"Enter new amount: ";
+            cin>>expenses[i].amount;
+
+            cin.ignore();
+            cout<<"Enter new category: ";
+            getline(cin, expenses[i].category);
+            cout<<"Enter new date: ";
+            getline(cin,expenses[i].date);
+
+            cout<<"Expense updated successfully!"<<endl;
+
+            found = 1;
+            break;
+        }
+    }
+    if(found == 0) {
+        cout<<"Expense ID not found!"<<endl;
+    }
+}
+
+//Function to delete an expense
+
+void deleteExpense(vector<Expense>&expenses){
+    int searchID;
+    int found = 0;
+
+    cout<<"Enter the ID of the expense to delete: ";
+    cin>>searchID;
+
+    for(int i = 0; i< expenses.size();i++){
+        if(expenses[i].id == searchID){
+            for(int j = i;j<expenses.size() - 1; j++){
+                expenses[j] = expenses[j + 1];
+
+            }
+
+            expenses.pop_back();
+            cout<<"Expense deleted successfully!" <<endl;
+
+            found = 1;
+            break;
+        }
+    }
+   if (found == 0){
+    cout<<"Expense ID not found!"<<endl;
+   } 
+}
 int main(){
    // vector<Expense> expenses;
     cout<<"=====EXPENSE TRACKER===== "<<endl;
@@ -66,7 +126,7 @@ int main(){
         cout<<"1. Add Expense"<<endl;
         cout<<"2. View Expense"<<endl;
         cout<<"3.Calculate Total"<<endl;
-        cout<<"4. Exit<<endl";
+     
         cout<<"Enter Your Choice: "<<endl;
         cin>>choice;
 
