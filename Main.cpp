@@ -56,7 +56,6 @@ void calculateTotal(vector<Expense>&expenses){
     }
     cout<<"Total expenses: K"<<total<<endl;
 }
-<<<<<<< HEAD
 
 //Functions to edit an expense
 void editExpense(vector<Expense>&expenses){
@@ -117,8 +116,6 @@ void deleteExpense(vector<Expense>&expenses){
     cout<<"Expense ID not found!"<<endl;
    } 
 }
-=======
->>>>>>> 13ffe8e4200522f290504bf1d5159fe62f140c5b
 int main(){
    // vector<Expense> expenses;
     cout<<"=====EXPENSE TRACKER===== "<<endl;
@@ -129,13 +126,9 @@ int main(){
         cout<<"1. Add Expense"<<endl;
         cout<<"2. View Expense"<<endl;
         cout<<"3.Calculate Total"<<endl;
-<<<<<<< HEAD
         cout<<"4. Edit Expense"<<endl;
         cout<<"5. Delete Expense"<<endl;
         cout<<"6. Exit<<endl";
-=======
-        cout<<"4. Exit<<endl";
->>>>>>> 13ffe8e4200522f290504bf1d5159fe62f140c5b
         cout<<"Enter Your Choice: "<<endl;
         cin>>choice;
 
@@ -143,7 +136,6 @@ int main(){
             case 1: addExpense(expenses);
             break;
             case 2: viewExpenses(expenses);
-<<<<<<< HEAD
             break;   
             case 3: calculateTotal(expenses);
             break;
@@ -152,22 +144,12 @@ int main(){
             case 5: deleteExpense(expenses);
             break;
             case 6: cout<<"Exiting Expense Tracker..."<<endl;
-=======
-            break;
-            case 3: calculateTotal(expenses);
-            break;
-            case 4: cout<<"Exiting Expense Tracker..."<<endl;
->>>>>>> 13ffe8e4200522f290504bf1d5159fe62f140c5b
             break;
             default:cout<<"Invalid choice!"<<endl; 
             
 
         }
-<<<<<<< HEAD
      }while(choice !=6);
-=======
-     }while(choice !=4);
->>>>>>> 13ffe8e4200522f290504bf1d5159fe62f140c5b
     
     return 0;
 }
