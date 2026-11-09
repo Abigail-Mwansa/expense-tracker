@@ -25,9 +25,13 @@ void addExpense(vector<Expense>&expenses){
     cin>>e.amount;
 
     cin.ignore();
-    cout<<"Enter category: ";
+    cout<<"Enter category (Food, Transport, Education, other): ";
     getline(cin, e.category);
+    cout<<" Enter date: ";
+    getline(cin, e.date);
 
+    expenses.push_back(e);
+    
     cout<<"Expense added successfully!"<<endl;
 }
 
@@ -116,6 +120,49 @@ void deleteExpense(vector<Expense>&expenses){
     cout<<"Expense ID not found!"<<endl;
    } 
 }
+
+//NEW FEATURE : Expense category summary
+
+void categorySummary(vector<Expense>&expenses){
+    double foodTotal = 0;
+    double transportTotal = 0;
+    double educationTotal = 0;
+    double otherTotal = 0;
+    double overallTotal = 0;
+
+    if(expenses.size() == 0 ){
+        cout<<"\n No Expenses available for the report."<<endl;
+    }
+    else {
+        for(int i = 0;i<expenses.size();i++){
+            if(expenses[i].category == "Food"){
+                foodTotal = foodTotal + expenses[i].amount;
+            }
+            else if(expenses[i].category == "Transport"){
+                transportTotal =  transportTotal + expenses[i].amount ;
+            }  else if(expenses[i].category == "Education"){
+                educationTotal = educationTotal + expenses[i].amount;
+
+            }
+            else{
+                otherTotal = otherTotal + expenses[i].amount;
+            }
+            overallTotal = overallTotal + expenses[i].amount;
+        }
+
+        cout<<" \n=========EXPENSE REPORT=============="<<endl;
+
+        cout<<"\nFood expenses: K"<<foodTotal <<endl;
+        cout<<"\nTransport expenses: K"<<transportTotal <<endl;
+        cout<<"\nEducation expenses: K"<<educationTotal <<endl;
+        cout<<"\nOther expenses: K"<<otherTotal <<endl;
+
+        cout<<"-----------------------------------------------"<<endl;
+        cout<<"====================================================="<<endl;
+    }
+}
+
+//MAIN FUNCTION
 int main(){
    // vector<Expense> expenses;
     cout<<"=====EXPENSE TRACKER===== "<<endl;
@@ -128,7 +175,8 @@ int main(){
         cout<<"3.Calculate Total"<<endl;
         cout<<"4. Edit Expense"<<endl;
         cout<<"5. Delete Expense"<<endl;
-        cout<<"6. Exit<<endl";
+        cout<<"6.Expense Reports"<<endl;
+        cout<<"7. Exit<<endl";
         cout<<"Enter Your Choice: "<<endl;
         cin>>choice;
 
@@ -143,13 +191,15 @@ int main(){
             break;
             case 5: deleteExpense(expenses);
             break;
-            case 6: cout<<"Exiting Expense Tracker..."<<endl;
+            case 6: categorySummary(expenses);
+            break;
+            case 7: cout<<"Exiting Expense Tracker..."<<endl;
             break;
             default:cout<<"Invalid choice!"<<endl; 
             
 
         }
-     }while(choice !=6);
+     }while(choice !=7);
     
     return 0;
 }
