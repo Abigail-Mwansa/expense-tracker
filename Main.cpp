@@ -1,6 +1,7 @@
 #include<iostream>
 #include<vector>
 #include<string>
+#include<fstream>
 using namespace std;
 
 //Structure for storing expense information
@@ -161,7 +162,35 @@ void categorySummary(vector<Expense>&expenses){
         cout<<"====================================================="<<endl;
     }
 }
+//FUNCTION THAT SAVES EXPENSES
+void saveExpenses(vector<Expense>&expenses){
+    ofstream file("expenses.txt");
+    for(int i = 0;i<expenses.size();i++){
+        file<<expenses[i].id<<endl;
+        file<<expenses[i].description<<endl;
+        file<<expenses[i].amount<<endl;
+        file<<expenses[i].category<<endl;
+        file<<expenses[i].date<<endl;
+    }
+    file.close();
+    cout<<"Expenses saved successfully!"<<endl;
+}
 
+//FUNCTIONS TO LOAD EXPENSES
+void loadExpenses(vector<Expense>&expenses){
+    ifstream file("expenses.txt");
+    Expense e;
+    while(file >>e.id){
+        file.ignore();
+        getline(file, e.description);
+        file >> e.amount;
+        file.ignore();
+        getline(file, e.category);
+        getline(file, e.date);
+        expenses.push_back(e);
+    }
+    file.close();
+}
 //MAIN FUNCTION
 int main(){
    // vector<Expense> expenses;
@@ -176,7 +205,8 @@ int main(){
         cout<<"4. Edit Expense"<<endl;
         cout<<"5. Delete Expense"<<endl;
         cout<<"6.Expense Reports"<<endl;
-        cout<<"7. Exit<<endl";
+        cout<<"7.Load Expenses"<<endl;
+        cout<<"8. Exit"<<endl;
         cout<<"Enter Your Choice: "<<endl;
         cin>>choice;
 
@@ -193,13 +223,15 @@ int main(){
             break;
             case 6: categorySummary(expenses);
             break;
-            case 7: cout<<"Exiting Expense Tracker..."<<endl;
+            case 7: saveExpenses(expenses);
+            break;
+            case 8: cout<<"Exiting Expense Tracker..."<<endl;
             break;
             default:cout<<"Invalid choice!"<<endl; 
             
 
         }
-     }while(choice !=7);
+     }while(choice !=8);
     
     return 0;
 }
