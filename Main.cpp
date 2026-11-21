@@ -162,6 +162,7 @@ void categorySummary(vector<Expense>&expenses){
         cout<<"====================================================="<<endl;
     }
 }
+
 //FUNCTION THAT SAVES EXPENSES
 void saveExpenses(vector<Expense>&expenses){
     ofstream file("expenses.txt");
@@ -191,6 +192,74 @@ void loadExpenses(vector<Expense>&expenses){
     }
     file.close();
 }
+//function for searching expense by id
+void searchExpense(vector<Expense>&expenses){
+    int searchID;
+    int found = 0;
+
+    cout<<"Enter expense to search: ";
+    cin>>searchID;
+
+    for(int i = 0;i< expenses.size(); i++){
+        if(expenses[i].id == searchID){
+            cout<<"\n Expense Found!"<<endl;
+            cout<<"ID: "<<expenses[i].id<<endl;
+            cout<<"Description: "<<expenses[i].description<<endl;
+            cout<<"Amount: "<<expenses[i].amount<<endl;
+            cout<<"Category: "<<expenses[i].category<<endl;
+            cout<<"Date: "<<expenses[i].date<<endl;
+
+            found = 1;
+            break;
+        }
+    }
+    if(found == 0){
+        cout<<"\n Expense not found."<<endl;
+    }
+}
+//function for finding an expense by category
+void searchByCategory(vector<Expense>&expenses){
+    string searchCategory;
+    int found = 0;
+
+    cin.ignore();
+    cout<<"\nEnter Category: ";
+    cin>>searchCategory;
+
+    for(int i = 0;i< expenses.size();i++){
+        if(expenses[i].category == searchCategory){
+            cout<<"\nDescription: "<<expenses[i].description<<endl;
+            cout<<"Amount: "<<expenses[i].amount<<endl;
+            cout<<"Date: "<<expenses[i].date<<endl;
+
+            found = 1;
+        }
+    }
+    if(found == 0){
+        cout<<"\nNo expenses found in this category!"<<endl;
+    }
+
+}
+//function for searching by date
+void searchByDate(vector<Expense>&expenses){
+    string searchDate;
+    int found = 0;
+    cout<<"\nEnter the date: ";
+    cin>>searchDate;
+    for(int i = 0;i<expenses.size();i++){
+        if(expenses[i].date == searchDate){
+            cout<<"\nDescription: "<<expenses[i].description<<endl;
+            cout<<"Amount: "<<expenses[i].amount<<endl;
+            cout<<"Category: "<<expenses[i].category<<endl;
+
+            found = 1;
+        }
+    }
+    if(found == 0){
+        cout<<"No expense found for this date!"<<endl;
+    }
+}
+
 //MAIN FUNCTION
 int main(){
    // vector<Expense> expenses;
@@ -201,12 +270,15 @@ int main(){
         cout<<"\n====EXPENSE TRACKER===="<<endl;
         cout<<"1. Add Expense"<<endl;
         cout<<"2. View Expense"<<endl;
-        cout<<"3.Calculate Total"<<endl;
+        cout<<"3. Calculate Total"<<endl;
         cout<<"4. Edit Expense"<<endl;
         cout<<"5. Delete Expense"<<endl;
-        cout<<"6.Expense Reports"<<endl;
-        cout<<"7.Load Expenses"<<endl;
-        cout<<"8. Exit"<<endl;
+        cout<<"6. Expense Reports"<<endl;
+        cout<<"7. Load Expenses"<<endl; 
+        cout<<"8. Search Expense By ID"<<endl;
+        cout<<"9. Search Expense By Category"<<endl;
+        cout<<"10. Search Expense By Date"<<endl;
+        cout<<"11. Exit"<<endl;
         cout<<"Enter Your Choice: "<<endl;
         cin>>choice;
 
@@ -223,15 +295,21 @@ int main(){
             break;
             case 6: categorySummary(expenses);
             break;
-            case 7: saveExpenses(expenses);
+            case 7: searchExpense(expenses);
             break;
-            case 8: cout<<"Exiting Expense Tracker..."<<endl;
+            case 8: searchByCategory(expenses);
+            break;
+            case 9: searchByDate(expenses);
+            break;
+            case 10: saveExpenses(expenses);
+            break;
+            case 11: cout<<"Exiting Expense Tracker..."<<endl;
             break;
             default:cout<<"Invalid choice!"<<endl; 
             
 
         }
-     }while(choice !=8);
+     }while(choice !=11);
     
     return 0;
 }
