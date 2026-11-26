@@ -260,6 +260,47 @@ void searchByDate(vector<Expense>&expenses){
     }
 }
 
+
+//FUNCTION FOR SORTING EXPENSES
+void sortingExpenses(vector<Expense>expenses){
+    int choice;
+    cout<<"\n====SORT EXPENSES===="<<endl;
+    cout<<"1.Sort Amount(Ascending)"<<endl;
+    cout<<"1.Sort Amount(Descending)"<<endl;
+    cout<<"1.Sort Amount by Date"<<endl;
+    cout<<"Enter your choice: ";
+    cin>>choice;
+
+    for(int 1=0;i<expenses.size()-1;i++){
+        for(int j=0;j<expenses.size()-i-1;j++){
+            if(choice ==1 && expenses[j].amount > expenses[j + 1].amount){
+                Expense temp = expenses[j];
+                expenses[j] = expenses[j + 1];
+                expenses[j + 1] = temp;
+            }
+            else if(choice == 2 && expenses[j].amount < expenses[j + 1].amount){
+                Expense temp = expenses[j];
+                expenses[j] = expenses[j + 1];
+                expenses[j + 1] = temp;
+
+            }
+            else if(choice == 3 && expenses[j].date >expenses[j + 1].date){
+                Expense temp = expenses[j];
+                expenses[j] = expenses[j + 1];
+                expenses[j + 1] = temp;
+            }
+        } 
+
+    }
+    if(choice >= 1 && choice <= 3){
+        cout<<"\nExpenses sorted successfully!"<<endl;
+
+        viewExpenses(expenses);
+    }
+    else {
+        cout<<"\nInvalid Choice.Try Again!"<<endl;
+    }
+}
 //MAIN FUNCTION
 int main(){
    // vector<Expense> expenses;
@@ -278,7 +319,8 @@ int main(){
         cout<<"8. Search Expense By ID"<<endl;
         cout<<"9. Search Expense By Category"<<endl;
         cout<<"10. Search Expense By Date"<<endl;
-        cout<<"11. Exit"<<endl;
+        cout<<"11. Sort Expenses"<<endl;
+        cout<<"12. Exit"<<endl;
         cout<<"Enter Your Choice: "<<endl;
         cin>>choice;
 
@@ -303,13 +345,15 @@ int main(){
             break;
             case 10: saveExpenses(expenses);
             break;
-            case 11: cout<<"Exiting Expense Tracker..."<<endl;
+            case 11: sortExpenses(expenses);
+            break;
+            case 12: cout<<"Exiting Expense Tracker..."<<endl;
             break;
             default:cout<<"Invalid choice!"<<endl; 
             
 
         }
-     }while(choice !=11);
+     }while(choice !=12);
     
     return 0;
 }
